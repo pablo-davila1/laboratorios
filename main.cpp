@@ -1,534 +1,568 @@
-#include <iostream>
+  #include <iostream>
+#include <stdlib.h>
+#include<math.h>
 
 using namespace std;
 
-int Potencia(int a, int b); //Prototipo de la funcion
+
+//G5 1,2,4,7,9,10,12,13,15
 
 int size(int a); //Prototipo de la funcion
 
+int comversoraint(char number[15]);//Funcion punto 4
+
 int main()
 {
-
     int problema = 1;
 
-while(problema != 0){
+while (problema != 0){
+
     cout<<"·________________________________________·"<<endl;
-    cout<<"|          Menu de la practica 1          |"<<endl;
+    cout<<"|          Menu de la practica 2          |"<<endl;
     cout<<"º-----------------------------------------º"<<endl;
     cout<<"|Para ejecuar el punto 1 presione (1)     |"<<endl;
     cout<<"|Para ejecuar el punto 2 presione (2)     |"<<endl;
-    cout<<"|Para ejecuar el punto 3 presione (3)     |"<<endl;
-    cout<<"|Para ejecuar el punto 4 presione (5)     |"<<endl;
+    cout<<"|Para ejecuar el punto 4 presione (4)     |"<<endl;
     cout<<"|Para ejecuar el punto 7 presione (7)     |"<<endl;
-    cout<<"|Para ejecuar el punto 8 presione (8)     |"<<endl;
     cout<<"|Para ejecuar el punto 9 presione (9)     |"<<endl;
+    cout<<"|Para ejecuar el punto 10 presione (10)   |"<<endl;
     cout<<"|Para ejecuar el punto 12 presione (12)   |"<<endl;
     cout<<"|Para ejecuar el punto 13 presione (13)   |"<<endl;
-    cout<<"|Para ejecuar el punto 14 presione (15)   |"<<endl;
-    cout<<"|Para ejecuar el punto 14 presione (17)   |"<<endl;
+    cout<<"|Para ejecuar el punto 15 presione (15)   |"<<endl;
     cout<<"|Para salir presione (0)                  |"<<endl;
     cout<<"------------------------------------------"<<endl;
     cin>>problema;
+
     switch (problema) {
-
         case 1:{
-            /*Problema 1. Escriba un programa que identique si un carácter ingresado es una vocal, una con-
-              sonante o ninguna de las 2 e imprima un mensaje según el caso.
-              Nota: el formato de salida debe ser:
-              no es una letra.
-              a es una vocal.
-              C es una consonante.*/
-            cout<<"¿vocal o consonante?"<<endl;
-            char vocal;
-            cout<<"Ingrese una letra: "<<endl;
-            cin>>vocal;
-            if (vocal == 'a' || vocal == 'e' ||vocal == 'i' ||vocal == 'o' ||vocal == 'u' || vocal == 'A' ||vocal == 'E' ||vocal == 'I' ||vocal == 'O' ||vocal == 'U'){
-                cout<<"la letra "<<vocal<<" es vocal"<<endl;
-                break;
-            }
-            cout<<"la letra "<<vocal<<" es consonante"<<endl;
+        /*
+        1. Se necesita un programa que permita determinar la mínima combinación de billetes y monedas
+        para una cantidad de dinero determinada. Los billetes en circulación son de $50.000, $20.000,
+        $10.000, $5.000, $2.000 y $1.000, y las monedas son de $500, $200, $100 y $50. Hacer un
+        programa que entregue el número de billetes y monedas de cada denominación para completar
+        la cantidad deseada. Si por medio de los billetes y monedas disponibles no se puede lograr la
+        cantidad deseada, el sistema deberá decir lo que resta para lograrla. Use arreglos y ciclos para
+        realizar el programa.
+        Ej: si se ingresa 47810, el programa debe imprimir:
+        50000 : 0
+        20000: 2
+        10000 : 0
+        5000: 1
+        2000 : 1
+        1000: 0
+        500 : 1
+        200: 1
+        100: 1
+        50: 0
+        Faltante: 10
+        */
 
-            break;}
+        int coins[10] ={50000,20000,10000,5000,2000,1000,500,200,100,50};
+        int money=0, entero=0, *Pcoins = &coins[0];
+        cout<<"Ingrese el dinero: ";
+        cin>>money;
+
+        for(int i=0; i<10; i++){
+            entero = money/ *(Pcoins+i);
+            money = money-(entero *(*(Pcoins+i)));
+            cout<<*(Pcoins +i) <<": "<<entero<<endl;
+        };
+        if (money != 0)
+            cout<<"Faltante: "<<money<<endl;;
+
+        break;}
 
         case 2:{
-            /*Problema 2. Se necesita un programa que permita determinar la mínima combinación de billetes
-            y monedas para una cantidad de dinero determinada. Los billetes en circulación son de $50.000,
-            $20.000, $10.000, $5.000, $2.000 y $1.000, y las monedas son de $500, $200, $100 y $50.
+        /*
+        2. Elabore un programa que genere un arreglo de 100 letras mayúsculas aleatorias, imprima este
+        arreglo y luego imprima cuantas veces se repite cada letra en el arreglo.
+        Ej: supóngase que se genera el arreglo de 10 elementos: ABARSECAAB. El programa debe
+        imprimir:
+        ABARSECAAB
+        A: 4
+        B: 2
+        C: 1
+        Y así sucesivamente.
+        */
 
-            Hacer un programa que entregue el número de billetes y monedas de cada denominación para com-
-            pletar la cantidad deseada. Si por medio de los billetes y monedas disponibles no se puede lograr la
+        char letras[100], *Pletras=&letras[0];
+        int random = 0,A=0,B=0,C=0,D=0,E=0,F=0,G=0,H=0,I=0,J=0,K=0,L=0,M=0,N=0,O=0,P=0,Q=0,R=0,S=0,T=0,U=0,V=0,W=0,X=0,Y=0,Z=0;
+        random = rand() % 26;
+        random += 65;
 
-            cantidad deseada, el sistema deberá decir lo que resta para lograrla.
-            Ej: si se ingresa 47810, el programa debe imprimir:
-            50000 : 0
-            20000: 2
-            10000 : 0
-            5000: 1
-            2000 : 1
-            1000: 0
-            500 : 1
-            200: 1
-            100 : 1
-            50: 0
-            Faltante: 10*/
-            cout<<"maquna de devueltas"<<endl;
-            int dinero = 0, tickets_50k = 0, tickets_20k = 0, tickets_10k = 0,tickets_5k = 0,tickets_2k = 0,tickets_1k = 0, coins_500=0, coins_200=0,coins_100=0,coins_50=0;
-            cout<<"Ingrese la cantidad de dinero: ";
-            cin>>dinero;
-            tickets_50k = dinero/50000;
-            dinero = dinero - (tickets_50k*50000);
-            tickets_20k = dinero/20000;
-            dinero = dinero - (tickets_20k*20000);
-            tickets_10k = dinero/10000;
-            dinero = dinero - (tickets_10k*10000);
-            tickets_5k = dinero/5000;
-            dinero = dinero - (tickets_5k*5000);
-            tickets_2k = dinero/2000;
-            dinero = dinero - (tickets_2k*2000);
-            tickets_1k = dinero/1000;
-            dinero = dinero - (tickets_1k*1000);
-            coins_500 = dinero/500;
-            dinero = dinero - (coins_500*500);
-            coins_200 = dinero/200;
-            dinero = dinero - (coins_200*200);
-            coins_100 = dinero/100;
-            dinero = dinero - (coins_100*100);
-            coins_50 = dinero/50;
-            dinero = dinero - (coins_50*50);
+        for(int i = 0; i<100 ; i++){
+            random = rand() % 26;
+            random += 65;
+            *(Pletras + i) = random;
+        }
 
 
-            cout<<"los billete de 50k son: "<<tickets_50k<<endl;
-            cout<<"los billete de 20k son: "<<tickets_20k<<endl;
-            cout<<"los billete de 10k son: "<<tickets_10k<<endl;
-            cout<<"los billete de 5k son: "<<tickets_5k<<endl;
-            cout<<"los billete de 2k son: "<<tickets_2k<<endl;
-            cout<<"los billete de 1k son: "<<tickets_1k<<endl;
-            cout<<"las monedas de 500 son: "<<coins_500<<endl;
-            cout<<"las monedas de 200 son: "<<coins_200<<endl;
-            cout<<"las monedas de 100 son: "<<coins_100<<endl;
-            cout<<"las monedas de 50 son: "<<coins_50<<endl;
-            cout<<"la plata que sobra es: "<<dinero<<endl;
+        for (int i = 0; i<100 ; i++){
+            if(*(Pletras+i) == 'A')
+                A++;
+            else if (*(Pletras+i) == 'B')
+                B++;
+            else if (*(Pletras+i) == 'C')
+                C++;
+            else if (*(Pletras+i) == 'D')
+                D++;
+            else if (*(Pletras+i) == 'E')
+                E++;
+            else if (*(Pletras+i) == 'F')
+                F++;
+            else if (*(Pletras+i) == 'G')
+                G++;
+            else if (*(Pletras+i) == 'H')
+                H++;
+            else if (*(Pletras+i) == 'I')
+                I++;
+            else if (*(Pletras+i) == 'J')
+                J++;
+            else if (*(Pletras+i) == 'K')
+                K++;
+            else if (*(Pletras+i) == 'E')
+                E++;
+            else if (*(Pletras+i) == 'L')
+                L++;
+            else if (*(Pletras+i) == 'M')
+                M++;
+            else if (*(Pletras+i) == 'N')
+                N++;
+            else if (*(Pletras+i) == 'O')
+                O++;
+            else if (*(Pletras+i) == 'P')
+                P++;
+            else if (*(Pletras+i) == 'Q')
+                Q++;
+            else if (*(Pletras+i) == 'R')
+                R++;
+            else if (*(Pletras+i) == 'S')
+                S++;
+            else if (*(Pletras+i) == 'T')
+                T++;
+            else if (*(Pletras+i) == 'U')
+                U++;
+            else if (*(Pletras+i) == 'V')
+                V++;
+            else if (*(Pletras+i) == 'W')
+                W++;
+            else if (*(Pletras+i) == 'X')
+                X++;
+            else if (*(Pletras+i) == 'Y')
+                Y++;
+            else
+                Z++;
+
+        }
+
+        for (int i = 0; i<100 ; i++){
+            cout<<*(Pletras+i);
+        }
+        cout<<endl;
+
+        cout<<"A: "<<A<<endl;
+        cout<<"B: "<<B<<endl;
+        cout<<"C: "<<C<<endl;
+        cout<<"D: "<<D<<endl;
+        cout<<"E: "<<E<<endl;
+        cout<<"F: "<<F<<endl;
+        cout<<"G: "<<G<<endl;
+        cout<<"H: "<<H<<endl;
+        cout<<"I: "<<I<<endl;
+        cout<<"J: "<<J<<endl;
+        cout<<"K: "<<K<<endl;
+        cout<<"L: "<<L<<endl;
+        cout<<"M: "<<M<<endl;
+        cout<<"N: "<<N<<endl;
+        cout<<"O: "<<O<<endl;
+        cout<<"P: "<<P<<endl;
+        cout<<"Q: "<<Q<<endl;
+        cout<<"R: "<<R<<endl;
+        cout<<"S: "<<S<<endl;
+        cout<<"T: "<<T<<endl;
+        cout<<"U: "<<U<<endl;
+        cout<<"V: "<<V<<endl;
+        cout<<"W: "<<W<<endl;
+        cout<<"X: "<<X<<endl;
+        cout<<"Y: "<<Y<<endl;
+        cout<<"Z: "<<Z<<endl;
 
         break;}
 
-        case 3:{
-            /*Problema 3. Escriba un programa que debe leer un mes y un día de dicho mes para luego decir
-            si esa combinación de mes y día son válidos. El caso más especial es el 29 de febrero, en dicho caso
-            imprimir posiblemente año bisiesto.
-            Nota: el formato de salida debe ser:
-            14 es un mes invalido.
-            31/4 es una fecha invalida.
-            27/4 es una fecha valida.
-            29/2 es valida en bisiesto.*/
-            cout<<"meses validos"<<endl;
-            int mes = 0, dia = 0;
-            cout<<"Ingrese un mes: ";
-            cin>>mes;
+        case 4:{
+        /*
+        4. Haga una función que reciba una cadena de caracteres numéricos, la convierta a un número
+        entero y retorne dicho número. Escriba un programa de prueba.
+        Ej: si recibe la cadena “123”, debe retornar un int con valor 123.
+        */
 
-            if (mes<1 || mes>12 ){
-                cout<<mes <<" es un mes invalido"<<endl;
+
+        char number[15];
+        cout<<"ingrese un numero: ";
+        cin>>number;
+
+        cout<<"en entero es: "<<comversoraint(number)<<endl;
+
+
+        break;}
+
+
+        case 7:{
+        /*
+        7. Escriba un programa que reciba una cadena de caracteres y elimine los caracteres repetidos.
+        Ej: se recibe bananas debe mostrar bans.
+        Nota: la salida del programa debe ser: Original: bananas.
+        Sin repetidos: bans.
+        */
+
+        char cadena1[15], cadena2[15];
+        cout<<"Ingrese una palabra: ";
+        cin>>cadena1;
+        bool conf = true;
+        int c = 0;
+        char *Pcadena1 = &cadena1[0],*Pcadena2 = &cadena2[0];
+
+        for (int i =0 ; *(Pcadena1+i) != NULL ; i++){
+            for (int j =0 ; *(Pcadena2+j) != NULL ; j++){
+                if(*(Pcadena1 + i) == *(Pcadena2 + j)){
+                    conf = false;
+                }
+                if (conf == false)
+                    break;
+
+            }
+            if (conf == true){
+                *(Pcadena2 + c) = *(Pcadena1 + i);
+                c++;
+            }
+
+            conf = true;
+        }
+
+        cout<<"Original: ";
+        for (int j =0 ; *(Pcadena1+j) != NULL ; j++){
+            cout<<*(Pcadena1+j);
+        }
+        cout<<"."<<endl<<"Sin repetidos: ";
+
+
+        for (int j =0 ; *(Pcadena2+j) != NULL ; j++){
+            cout<<*(Pcadena2+j);
+        }
+
+        cout<<"."<<endl;
+
+
+        break;}
+
+        case 9:{
+        /*
+        9. Escribir un programa que reciba un número n y lea una cadena de caracteres numéricos, el
+        programa debe separar la cadena de caracteres en números de n cifras, sumarlos e imprimir el
+        resultado. En caso de no poderse dividir exactamente en números de n cifras se colocan ceros a
+        la izquierda del primer número.
+        Ej: Si n=3 y se lee el arreglo 87512395 la suma seria 087+512+395=994.
+        Nota: la salida del programa debe ser:
+        Original: 87512395.
+        Suma: 994.
+        */
+        char cadena1[15];
+        int suma = 0, n=0;
+        char *Pcadena1 = &cadena1[0];
+        cout<<"Ingrese un numero: ";
+        cin>>cadena1;
+        cout<<"Ingrese otro  numero: ";
+        cin>>n;
+        char cadenaint[n], *Pcadenaint = &cadenaint[0];
+
+        for (int i = 0; *(Pcadena1 + i ) != NULL ; i+=n){
+            for (int j=0 ; j<n ; j++){
+                *(Pcadenaint + j) = *(Pcadena1 + (i+j));
+            }
+            suma += comversoraint(cadenaint);
+        }
+
+        cout<<"La suma es: "<<suma<<endl;
+
+
+        break;}
+
+        case 10:{
+        /*
+        10. Escribir un programa que permita convertir un número en el sistema romano al sistema arábigo
+        usado actualmente. A continuación se encuentran los caracteres usados en el sistema romano y
+        su equivalente arábigo:
+        M: 1000
+        D: 500
+        C: 100
+        L: 50
+        X: 10
+        V: 5
+        I: 1
+        Los números romanos se forman usando estos caracteres en base a dos reglas:
+         Si un carácter esta seguido por uno de igual o menor valor, su valor se suma al total.
+         Si un carácter esta seguido por uno de mayor valor, su va lor se resta del total.
+        Ej: CC=200, CD=400, DC=600, DCLXVI=666, CLXXIV=174.
+        Nota: la salida del programa debe ser:
+        El número ingresado fue: DCLXVI
+        Que corresponde a: 666.
+        */
+
+        //int I = 1, V=5, X=10, L=50, C=100 , D=500, M=1000;
+        bool conf = true;
+        int suma=0,a=0,b=0;
+        char romanos[8], *Promanos = &romanos[0];
+        cout<<"Ingrese un numero rromano en mayusculas por favor: ";
+        cin>>romanos;
+
+        for(int i =0 ; conf == true  ; i+=2){
+            if (*(Promanos+i) == 'I')
+                a=1;
+            else if(*(Promanos+i) == 'V')
+                a=5;
+            else if(*(Promanos+i) == 'X')
+                a=10;
+            else if(*(Promanos+i) == 'L')
+                a=50;
+            else if(*(Promanos+i) == 'C')
+                a=100;
+            else if(*(Promanos+i) == 'D')
+                a=500;
+            else if(*(Promanos+i) == 'M')
+                a=1000;
+
+
+            for(int j = 1+i ;  ;){
+                if (*(Promanos+j) == 'I')
+                    b=1;
+                else if(*(Promanos+j) == 'V')
+                    b=5;
+                else if(*(Promanos+j) == 'X')
+                    b=10;
+                else if(*(Promanos+j) == 'L')
+                    b=50;
+                else if(*(Promanos+j) == 'C')
+                    b=100;
+                else if(*(Promanos+j) == 'D')
+                    b=500;
+                else if(*(Promanos+j) == 'M')
+                    b=1000;
+
+                if(*(Promanos+j) <67 || *(Promanos+j) >88){
+                    conf = false;
+                    a=0;
+                    b=0;
+                    break;
+
+                }
                 break;
-            }
-
-            cout<<"Ingrese un dia: ";
-            cin>>dia;
-
-
-            if (mes == 1 || mes == 3 || mes == 7 || mes == 10 || mes == 12 || mes == 8 ){
-                if(1 <= dia && dia <= 31)
-                    cout<<dia<<"/"<<mes<<" es una fecha valida"<<endl;
-                else
-                    cout<<dia<<"/"<<mes<<" es una fecha invalida"<<endl;
 
             }
 
-            else if (mes == 4 || mes == 5 || mes == 6 || mes == 9 || mes == 11 ){
-                if(1 <= dia && dia <= 30)
-                    cout<<dia<<"/"<<mes<<" es una fecha valida"<<endl;
-                else
-                    cout<<dia<<"/"<<mes<<" es una fecha invalida"<<endl;
 
+            if (a>b){
+                suma = suma+b+a;
             }
-            else if (mes == 2){
-                if(1 <= dia && dia <= 28)
-                    cout<<dia<<"/"<<mes<<" es una fecha valida"<<endl;
-                else if(mes == 2 && dia == 29 )
-                    cout<<dia<<"/"<<mes<<" es una fecha valida en bisiesto"<<endl;
-                else
-                    cout<<dia<<"/"<<mes<<" es una fecha invalida"<<endl;
+            else if(b>a){
+                suma += b;
+                suma -= a;
+            }
+            else
+                suma = suma+a+b;
 
-            }
+
+        }
+
+
+        cout<<"en arabico es: "<<suma<<endl;
+
 
         break;}
 
-        case 5:{
-        /*Problema 5. Escriba un programa que muestre el siguiente patrón en la pantalla:
-
-           *
-          ***
-         *****
-        *******
-         *****
-          ***
-           *
-
-        El tamaño del patrón estará determinado un número entero impar que ingrese el usuario. En el
-        ejemplo mostrado, el tamaño de la gura es 7.*/
-
-        cout<<"imprimir figurita"<<endl;
-
-
-
-
-
-        int num=0;
-        cout<<"Ingrese un numero impar"<<endl;
-        cin>>num;
-
-        int num_espacio=3;
-        int n = 0, c=1, a=0,b=(num-1)/2;
-
-
-        while(c<=num){
-            num_espacio=b;
-            while (num_espacio!=n){
-                cout<<" ";
-                num_espacio--;
+        case 12:{
+        /*
+        12. Un cuadrado mágico es una matriz de números enteros sin repetir, en la que la suma de los
+        números en cada columna, cada fila y cada diagonal principal tienen como resultado la misma
+        constante. Escriba un programa que permita al usuario ingresar una matriz cuadrada, imprima la
+        matriz y verifique si la matriz es un cuadrado mágico.
+        Nota: un ejemplo de cuadrado mágico es el siguiente:
+        4 9 2
+        3 5 7
+        8 1 6
+            */
+        int n;
+        cout <<"Ingrese el tamaño de la matriz: ";
+        cin>>n;
+        int sn = (n*((n*n)+1))/2;
+        int c = sn;
+        bool com = true;
+        int cuadro [n][n];
+        int (*puntero_cuadro)[n]=cuadro;
+        for (int i = 0 ; i<n ; i++){
+            for (int j = 0 ; j<n ; j++){
+               cout<<"ingrese la posicion "<<"["<<i<<"]"<<"["<<j<<"]: ";
+               cin>>*(*(puntero_cuadro + i)+j);
             }
-            while(a != c ){
-                cout<<'*';
-                a++;
-            }
-            c = c+2;
-            b--;
-            a=0;
+        }
+        for (int i = 0 ; i<n ; i++){
+            for (int j = 0 ; j<n ; j++){
+                cout<<*(*(puntero_cuadro + i) +j)<<" ";
+
+        }
             cout<<endl;
         }
-
-        c=num-2;
-        b=0;
-        a=0;
-        n=1;
-        while(c>0){
-            num_espacio=0;
-            while (num_espacio!=n){
-                cout<<" ";
-                num_espacio++;
+        for (int i = 0 ; i<n ; i++ ){
+            if (c != sn){
+                com = false;
             }
-            while(a != c ){
-                cout<<'*';
-                a++;
+            c = 0;
+            for (int j = 0; j<n ; j++){
+               c = c + *(*(puntero_cuadro+i)+j);
             }
-            c = c-2;
-            a=0;
-            n++;
+        }
+        for (int i = 0 ; i<n ; i++ ){
+            if (c != sn){
+                com = false;
+            }
+            c = 0;
+            for (int j = 0; j<n ; j++){
+                c = c + *(*(puntero_cuadro+j)+i);
+            }
+        }
+        c = 0;
+        for (int i = 0 ; i<n ; i++ ){
+            c = c + *(*(puntero_cuadro+i)+i);
+        }
 
-            cout<<endl;
+        for (int i = 0 ; i<n ; i++ ){
+            if (c != sn){
+                com = false;
+            }
+            c = 0;
+            for (int j = (n-1); j >= 0 ; j--){
+                c = c + *(*(puntero_cuadro+j)+i);
+            }
+        }
+        if (c != sn){
+            com = false;
+            }
+
+        if (com == true){
+            cout << "Es cuadrado perfecto, la suma de cada fila, columna y diagonal es: "<<sn<< endl;
+        }
+        else{
+            cout << "No es cuadrado perfecto :("<< endl;
         }
         break;}
 
-    case 7:{
-        /*Problema 7. En la serie de Fibonacci, cada número es la suma de los 2 anteriores e inicia con 1 y
-        1. Ej: 1, 1, 2, 3, 5, 8, ....
-        Escriba un programa que reciba un número n y halle la suma de todos los números pares en la serie
-        de Fibonacci menores a n.
-        Ej: si se ingresa 10, sería la suma de 2+8 =10
-        Nota: el formato de salida debe ser: El resultado de la suma es: 10*/
+        case 13:{
+        /*
+        13. Se tiene una fotografía digitalizada de una porción de la galaxia NGC 1300 que está ubicada a
+        61.000.000 de años luz del planeta Tierra. La representación digital de la imagen está
+        constituida por una matriz de números enteros; en la cual, cada uno representa la cantidad de
+        luz en ese punto de la imagen, así:
+        00 03 04 00 00 00 06 08
+        05 13 06 00 00 00 02 03
+        02 06 02 07 03 00 10 00
+        00 00 04 15 04 01 06 00
+        00 00 07 12 06 09 10 04
+        05 00 06 10 06 04 08 00
 
-        cout<<"serie de Fibonacci"<<endl;
+        Se puede determinar si el elemento ai,j de la matriz representa una estrella si se cumple que:
+        (ai,j + ai,j−1 + ai,j+1 + ai−1,j + ai+1,j)/5 > 6.0
 
-        int first_number = 0,last_number=1, enesimo=0 , n= 0, c=0;
-        cout<<"Ingrese el numero enesimo de la serie de Fibonacci: ";
-        cin>>n;
+        Elabore y pruebe una función que reciba un puntero a la matriz de enteros como argumento y
+        que retorne el número de estrellas encontradas en la imagen. Ignore las posibles estrellas que
+        puedan existir en los bordes de la matriz.
+        */
+        int ngc[6][8] = {0,3,4,0,0,0,6,8,5,13,6,0,0,0,2,3,2,6,2,7,3,0,10,0,0,0,4,15,4,1,6,0,0,0,7,12,6,9,10,4,5,0,6,10,6,4,8,0};
+        int (*puntero_ngc)[8] = &ngc[0];
+        float find_star, a = 5.0;
+        int c = 0;
 
-        cout<<last_number<<',';
-        while(enesimo < n){
-            enesimo = first_number + last_number;
-            if (enesimo%2 == 0){
-                c = c + enesimo;
+        for (int i = 1 ; i<5 ; i++){
+            for (int j = 1 ; j<7 ; j++){
+                find_star = (*(*(puntero_ngc + i) +j) + *(*(puntero_ngc + i) +(j-1)) + *(*(puntero_ngc + i) +(j+1)) + *(*(puntero_ngc + (i-1)) +j) + *(*(puntero_ngc + (i+1)) +j))/a;
+                if (find_star > 6){
+                    c++;
+                }
+
             }
-            first_number=last_number;
-            last_number = enesimo;
 
         }
 
-        cout<<"El resultado de la suma es: "<<c<<endl;
+        cout<<"La cantidad de estrellas en NGC-1300 es de: "<<c<<endl;
 
         break;}
 
-    case 8:{
-        /*Problema 8. Escriba un programa que reciba 3 números a, b, c, y calcule la suma de todos los
-        múltiplos de a y b que sean menores a c. Tenga en cuenta no sumar 2 veces los múltiplos comunes.
-        Ej: para a=3, b=5 y c=10. Se sumarían 3+6+9+5=23
-        Para a=5, b=7 y c=36. Se sumarían 5+10+15+20+25+30+35+7+14+21+28 = 210.
-        Nota: el formato de salida debe ser:
-        m11 + m12 + m13 + . . . + m21 + m22 + m23. . . = sumatoria.
-        m11 representa el primer múltiplo de a y así sucesivamente. m21 representa el primer múltiplo de b
-        y así sucesivamente.*/
-        cout<<"sumatoria de multiplos menores que c"<<endl;
+        case 15:{
+        /*
+        15. Elabore un programa que permita hallar la intersección entre un par de rectángulos. Represente
+        los rectángulos como arreglos de 4 datos de la siguiente manera:
+         Los primeros 2 datos corresponden a las coordenadas de la esquina superior izquierda del
+        rectángulo (x, y).
+         Los siguientes 2 datos representan el ancho y la altura del rectángulo.
 
-        int a=0, b=0, c=0, sumatoria=0;
-        cout<<"ingrese el numero 'a': ";
-        cin>>a;
-        cout<<"ingrese el numero 'b': ";
-        cin>>b;
-        cout<<"ingrese el numero 'c': ";
-        cin>>c;
+        Figura 2. Parámetros del rectángulo.
 
-        for(int i = 1; i<c ; i++){
-            if(i%a == 0 ){
-                sumatoria += i;
-                cout<<","<<i;
-            }
+        Implemente una función que reciba 2 arreglos que representen los rectángulos A y B, y por
+        referencia retorne un rectángulo C (con la misma estructura descrita anteriormente) que corresponda
+        a la intersección de A y B.
+
+        Ej: Si se ingresan los rectángulos A y B representados por los arreglos {0, 0, 8, 4} y {5, 2, 6, 7}, el
+        rectángulo intersección C debe ser el arreglo {5, 2, 3, 2}
+        */
+        int x1 , y1 , a1, h1;
+        int x2, y2 , a2, h2;
+        int coor[4];
+
+        cout<<"Ingrese la posicion en (x) del primer cuadrado: ";
+        cin>>x1;
+        cout<<"Ingrese la posicion en (y) del primer cuadrado: ";
+        cin>>y1;
+        cout <<"Ingrese el ancho de el primer cuadrado: ";
+        cin>>a1;
+        cout <<"Ingrese la altura de el primer cuadrado: ";
+        cin>>h1;
+        cout<<"-----------------------------------------------"<<endl;
+        cout<<"Ingrese la posicion en (x) del segundo cuadrado: ";
+        cin>>x2;
+        cout<<"Ingrese la posicion en (y) del segundo cuadrado: ";
+        cin>>y2;
+        cout <<"Ingrese el ancho de el segundo cuadrado: ";
+        cin>>a2;
+        cout <<"Ingrese la altura de el segundo cuadrado: ";
+        cin>>h2;
+        coor[0] = x2-x1;
+        coor[1] = y2-y1;
+        coor[2] = a1 - x2;
+        coor[3] = h1 - y2;
+        cout<<"-----------------------------------------------"<<endl;
+        cout<< "La interseccion de A y B es: "<<"{";
+
+        for (int i = 0; i<4 ; i++){
+            cout<<coor[i]<<",";
         }
-        for(int j = 1; j<c ; j++){
-            if(j%b == 0 && j%a != 0){
-                sumatoria += j;
-                cout<<","<<j;
-            }
-        }
-
-        cout<<" = "<<sumatoria<<endl;
-
-        break;}
-
-    case 9:{
-        /*Problema 9. Escriba un programa que pida un número entero N e imprima el resultado de la suma
-        de todos sus dígitos elevados a sí mismos.
-        Ej: si se ingresa 1223 el resultado sería 1^1 + 2^2 + 2^2 + 3^3 = 36
-        Nota: la salida del programa debe ser: El resultado de la suma es: 36.*/
-
-        cout<<"Suma de sus dígitos elevados a sí mismos."<<endl;
-        int n=0, sumatoria = 0, number = 0,a = 0;
-        cout<<"Ingrese un numero entero: ";
-        cin>>n;
-        int c = size(n) - 1 , j = size(n);
-
-
-        for(int i = 1; i < j ; i++){
-            number= Potencia(10,c);
-            a=n/number;
-            sumatoria = sumatoria + Potencia(a,a);
-            n = n - a*number;
-            c--;
-        }
-        cout<<sumatoria<<endl;
-
-
-        break;}
-
-    case 12:{
-        /*Problema 12. Escriba un programa que calcula el máximo factor primo de un número.
-        Ej: Si se recibe 33 el programa debe imprimir 11.
-        Nota: la salida del programa debe ser: El mayor factor primo de 33 es: 11.*/
-
-        cout<<"Máximo factor primo."<<endl;
-
-        int max_factor = 0, num = 0;
-        bool conf = true;
-        cout<<"Ingrese un numero: ";
-        cin>>num;
-
-        for (int i = 3; i<=num ; i++){
-            for(int j = 2; j<i ; j++){
-                if(i%j == 0){
-                    conf = false;
-                    break;}
-            }
-            if (conf == true && num%i == 0)
-                max_factor= i;
-
-            conf = true;
-
-        }
-
-        cout<<"El mayor factor primo de "<<num <<" es: "<<max_factor<<endl;
-
-        break;}
-
-    case 13:{
-        /*Problema 13. Escriba un programa que reciba un número y calcule la suma de todos los primos
-        menores que el número ingresado.
-        Ej: Si se recibe 10 el programa debe imprimir 17.
-        Nota: la salida del programa debe ser: El resultado de la suma es: 17.*/
-
-
-        cout<<"Suma de primos menores a n."<<endl;
-
-        int suma = 2, num = 0;
-        bool conf = true;
-        cout<<"Ingrese un numero: ";
-        cin>>num;
-
-        for (int i = 3; i<num ; i++){
-            for(int j = 2; j<i ; j++){
-                if(i%j == 0){
-                    conf = false;
-                    break;}
-            }
-            if (conf == true)
-                suma += i;
-
-            conf = true;
-        }
-
-        cout<<"La suma de los numeros primos es: "<<suma<<endl;
-
-        break;}
-
-    case 15:{
-        /*Problema 15. Empezando con el número 1 y moviéndose hacia la izquierda y en sentido horario
-        se genera una espiral de números como la siguiente:
-        21 22 23 24 25
-        20  7  8  9 10
-        19  6  1  2 11
-        18  5  4  3 12
-        17 16 15 14 13
-        En el caso de esta espiral de 5x5, la suma de los números en la diagonal es 101.
-        Escriba un programa que reciba un número impar n y calcule la suma de los números en la diagonal
-        de una espiral de nxn.
-        Nota: la salida del programa debe ser:
-        En una espiral de 5x5, la suma es: 101.
-        Otra nota: se le dará una bonicación si imprime la espiral.*/
-
-        cout<<"Espral de Ulam."<<endl;
-
-        int suma = 0, c = 1, size = 0, n = 2, repetir = 0;
-        cout<<"Ingrese el tamaño de la matriz: ";
-        cin>>size;
-
-        int sizereplic=size;
-
-        int C =0, h = 1,z;
-
-        z = (size-1)/2;
-        int ulam[size+1][size+1],a=size*size;
-
-        while (a > 1) {
-            for (int columna = size-1; columna >= C ; columna--){
-                ulam[C][columna]=a;
-                a--;}
-            for (int fila = h ; fila < size-1 ; fila++){
-                ulam[fila][C]=a;
-                a--;}
-            for (int columna = C; columna < size-1; columna++){
-                ulam[size-1][columna]=a;
-                a--;}
-            for(int fila = size-1; fila > C; fila--){
-                ulam[fila][size-1]=a;
-                a--;}
-            size = size-1;
-            C = C+1;
-            h = h+1;
-        }
-        ulam[z][z]=1;
-
-        for (int i = 0 ; i<=size+C-1; i++ ){
-            for(int j = 0; j<=size+C-1 ; j++){
-                cout<<ulam[i][j];
-                cout<<' ';
-            }
-            cout<<'\n';
-        }
-
-
-         for (int i =0; i < ((sizereplic-1)/2) ; i++ ){
-            for( c ; repetir < 5 ; c = c+n){
-                suma += c;
-                repetir++;
-            }
-            c = c-n;
-            n = n+2;
-            c += n;
-            repetir = 1;
-
-
-        }
-        cout<<"En una espiral de "<< sizereplic <<"x"<< sizereplic<< ", la suma es: "<<suma;
-
-        break;}
-
-    case 17:{
-        /*Problema 17. La secuencia de números triangulares se forma al sumar su posición en el arreglo
-        con el valor del número anterior: 1, 1+2=3, 3+3=6, 6+4=10, 10+5=15, 15+6=21, 21+7=28...
-        Si listamos los números triangulares y sus divisores tenemos:
-        1: 1
-        3: 1,3
-        6: 1,2,3,6
-        10: 1,2,5,10
-        15: 1,3,5,15
-        21: 1,3,7,21
-        28: 1,2,4,7,14,28
-        Se observa que 28 es el primer número triangular que tiene más de 5 divisores. Escriba un programa
-        que reciba un número k y calcule cual es el primer número triangular que tiene más de k divisores.
-        Tip: el enésimo número triangular se puede representar como n*(n+1)/2.
-
-        Nota: la salida del programa debe ser:
-        El numero es: 28 que tiene 6 divisores.*/
-
-
-        cout<<"Numeros triangulares."<<endl;
-
-        int k = 0, divisores = 0, n=0, def=0,def_n=0;
-        bool find = false;
-
-        cout<<"Ingrese a 'k': ";
-        cin>>k;
-
-        while (find == false) {
-            for(int i = 1; i <= ((n*(n+1))/2); i++){
-                if(((n*(n+1))/2) % i == 0)
-                    divisores ++;
-            }
-
-            if(k <= divisores){
-                find = true;
-                def = divisores;
-                def_n = ((n*(n+1))/2);
-            }
-
-            divisores = 0;
-            n++;
-
-        }
-
-        cout<<"El numero es: "<<def_n<<" que tiene "<< def <<" divisores"<<endl;
-
+        cout<<"}"<<endl;
 
 
         break;}
 
-    default:{
+        case 0:{
+        problema =0;
+        break;}
+
+        default:{
         cout<<"la opcion "<<problema<<", no existe, intente de nuevo."<<endl;
         break;}
+
+
+
     }
+
 
 }
     return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-int Potencia(int a, int b)  //Definicion de la funcion
-{
-    int resultado=1;
-    for(int i=0; i<b; i++)
-    {
-        resultado*=a; // equilavale resultado=resultado*a;
-    }
-
-    return resultado;
 }
 
 int size (int a){
@@ -538,4 +572,50 @@ int size (int a){
         c++;
     }
     return c;
+}
+
+int comversoraint(char number[15]){
+    char *numbers = &number[0];
+    int size=0,entero = 0;
+
+    for(int i = 0;  *(numbers+i) >= 48 && *(numbers+i) <= 57 ; i++){
+        size++;
+    }
+
+    for (int i = 0; size != 0 ; i++){
+        if(*(numbers+i) == '1'){
+            entero += 1*pow(10,size-1);
+        }
+        else if(*(numbers+i) == '2'){
+            entero += 2*pow(10,size-1);
+        }
+        else if(*(numbers+i) == '3'){
+            entero += 3*pow(10,size-1);
+        }
+        else if(*(numbers+i) == '4'){
+            entero += 4*pow(10,size-1);
+        }
+        else if(*(numbers+i) == '5'){
+            entero += 5*pow(10,size-1);
+        }
+        else if(*(numbers+i) == '6'){
+            entero += 6*pow(10,size-1);
+        }
+        else if(*(numbers+i) == '7'){
+            entero += 7*pow(10,size-1);
+        }
+        else if(*(numbers+i) == '8'){
+            entero += 8*pow(10,size-1);
+        }
+        else if (*(numbers+i) == '9')
+            entero += 9*pow(10,size-1);
+        else if (*(numbers+i) == '0')
+            entero += 0;
+
+
+        size--;
+
+    }
+
+    return entero;
 }
